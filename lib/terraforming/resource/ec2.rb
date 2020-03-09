@@ -106,7 +106,7 @@ module Terraforming
 
       def instances
         @client.describe_instances.map(&:reservations).flatten.map(&:instances).flatten.reject do |instance|
-          instance.state.name == "terminated"
+          instance.state.name =~ /terminat/i
         end
       end
 
